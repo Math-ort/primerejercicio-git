@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const validCategorias = ['Camisetas', 'Pantalones', 'Zapatos', 'Accesorios'];  // enum de colores
 const validTallas = ['XS', 'S', 'M', 'L', 'XL'];  
 
-const productSchema = new mongoose.Schema({
+const productsSchema = new mongoose.Schema({
     nombre: {
         type : String,
         requiered : true,
@@ -16,7 +16,7 @@ const productSchema = new mongoose.Schema({
     },
     imagen: {
         type : String,
-        requiered : true,
+        default : ""
     },
     categoria: {
         type : String,
@@ -30,10 +30,11 @@ const productSchema = new mongoose.Schema({
     precio: {
         type : Number,
         requiered : true,
+        min: 0,
     }
 })
 
-module.exports = mongoose.model('Product', productSchema);
+module.exports = mongoose.model('Product', productsSchema);
 module.exports.validCategorias = validCategorias;
 module.exports.validTallas = validTallas;
 
